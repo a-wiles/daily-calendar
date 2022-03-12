@@ -17,11 +17,18 @@
 var timeblocks = function () {
     var htmlCode = ""
     for (var i = 9; i < 18; i++ ) {
-        htmlCode += `<div class="row"><div class="time-block col">${i}</div>
-        <textarea class="col" id="${i}" rows="2" cols="70"></textarea>
-        <button class="saveBtn col">Save</button></div>`
+        htmlCode += `<div class="row"><div class="time-block col-md-2">${i}</div>
+        <textarea class="col-md-8" id="${i}" rows="2" cols="70"></textarea>
+        <button class="saveBtn col-md-2">Save</button></div>`
     }
     $("#container").html(htmlCode);
 }
 
 timeblocks();
+
+$("#container").on("click", ".saveBtn", function(){
+    console.log("Does-this-work");
+    var content = $(this).siblings("textarea").val();
+    var timeBlock = $(this).siblings("textarea").attr("id");
+    console.log(content, timeBlock);
+})
