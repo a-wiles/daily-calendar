@@ -12,14 +12,22 @@
 
     document.getElementById("currentDay").innerHTML = dateTime
 
-
+var currentHour = moment().hours()
 //Event Listeners
 var timeblocks = function () {
     var htmlCode = ""
     for (var i = 9; i < 18; i++ ) {
         var getLocalStorage = localStorage.getItem(i) || "";
+        var timeCheck = "";
+        if (i<currentHour) {
+            timeCheck = "past"
+        } else if (i === currentHour) {
+            timeCheck = "present"
+        } else {
+            timeCheck = "future"
+        }
         htmlCode += `<div class="row"><div class="time-block col-md-2">${i}</div>
-        <textarea class="col-md-8" id="${i}" rows="2" cols="70">${getLocalStorage}</textarea>
+        <textarea class="col-md-8 ${timeCheck}" id="${i}" rows="2" cols="70">${getLocalStorage}</textarea>
         <button class="saveBtn col-md-2">Save</button></div>`
     }
     $("#container").html(htmlCode);
