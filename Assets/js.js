@@ -11,7 +11,6 @@
 
 //Current hour for Timeblocks If statement
 var currentHour = moment().hours()
-var input = ["9:00", "10:00", "11:00", "12:00", "1:00", "2:00", "3:00", "4:00", "5:00", "6:00"];
 
 // Adding Time Blocks
 var timeblocks = function () {
@@ -33,8 +32,14 @@ var timeblocks = function () {
             timeCheck = "future"
         }
 
+        //Adding the minutes to hours code
+        var dailyHours = i;
+
+        if (i > 12) {
+        dailyHours -= 12};
+
         //Text area for hours
-        htmlCode += `<div class="row"><div class="time-block col-md-2">${i}</div>
+        htmlCode += `<div class="row"><div class="time-block col-md-2">${dailyHours}:00</div>
         <textarea class="col-md-8 ${timeCheck}" id="${i}" rows="2" cols="70">${getLocalStorage}</textarea>
         <button class="saveBtn col-md-2">Save</button></div>`
     }
